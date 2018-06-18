@@ -151,13 +151,19 @@ def flatten_json(data_file, mode):
             for qa in paragraph['qas']:
                 id_, question, answers = qa['id'], qa['question'], qa['answers']
                 if mode == 'train':
-                    answer = answers[0]['text']  # in training data there's only one answer
-                    answer_start = answers[0]['answer_start']
-                    answer_end = answer_start + len(answer)
-                    rows.append((id_, context, question, answer, answer_start, answer_end))
+                    if len(answers) > 0:
+                        answer = answers[0]['text']  # in training data there's only one answer
+                        answer_start = answers[0]['answer_start']
+                        answer_end = answer_start + len(answer)
+                        rows.append((id_, context, question, answer, answer_start, answer_end))
+                    else:
+                        rows.append((id_, context, question, "", -1, -1))
                 else:  # mode == 'dev'
-                    answers = [a['text'] for a in answers]
-                    rows.append((id_, context, question, answers))
+                    if len(answers) > 0:
+                        answers = [a['text'] for a in answers]
+                        rows.append((id_, context, question, answers))
+                    else:
+                        rows.append((id_, context, question, [""]))
     return rows
 
 
