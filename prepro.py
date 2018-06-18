@@ -110,9 +110,9 @@ def setup():
     parser = argparse.ArgumentParser(
         description='Preprocessing data files, about 10 minitues to run.'
     )
-    parser.add_argument('--trn_file', default='SQuAD/train-v1.1.json',
+    parser.add_argument('--trn_file', default='SQuAD/train-v2.0.json',
                         help='path to train file.')
-    parser.add_argument('--dev_file', default='SQuAD/dev-v1.1.json',
+    parser.add_argument('--dev_file', default='SQuAD/dev-v2.0.json',
                         help='path to dev file.')
     parser.add_argument('--wv_file', default='glove/glove.840B.300d.txt',
                         help='path to word vector file.')
