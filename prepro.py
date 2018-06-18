@@ -28,8 +28,8 @@ def main():
         dev = list(tqdm(p.imap(annotate_, dev, chunksize=args.batch_size), total=len(dev), desc='dev  '))
     train = list(map(index_answer, train))
     initial_len = len(train)
-    train = list(filter(lambda x: x[-1] is not None, train))
-    log.info('drop {} inconsistent samples.'.format(initial_len - len(train)))
+    #train = list(filter(lambda x: x[-1] is not None, train))
+    #log.info('drop {} inconsistent samples.'.format(initial_len - len(train)))
     log.info('tokens generated')
 
     # load vocabulary from word vector files
